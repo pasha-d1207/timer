@@ -42,12 +42,11 @@ var interval = setInterval(function (){
             $time.textContent = '0.0'
             clearInterval(interval)
     }
-    switch (true) {
-        case time <= 0:  
-            $time.textContent = '0.0'
-            clearInterval(interval)
-            $startButton.removeAttribute('disabled',true)
-    }
+    if (time <= 0){
+        $time.textContent = '0.0'
+        clearInterval(interval)
+        $startButton.removeAttribute('disabled',true)
+        }
     }, 100)
 }
 function setGetTime(){
