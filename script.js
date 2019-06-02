@@ -30,21 +30,23 @@ function reset(){
 }    
 function interval(){
 var interval = setInterval(function (){
-    if($isGameStarted === "start"){
-        var time = parseFloat($time.textContent)    
-        $time.textContent = (time - 0.1).toFixed(2) 
+    switch ($isGameStarted){
+        case 'start':
+            var time = parseFloat($time.textContent)    
+            $time.textContent = (time - 0.1).toFixed(2)
+            break 
+        case 'stop':
+            clearInterval(interval)
+            break
+        case 'reset':
+            $time.textContent = '0.0'
+            clearInterval(interval)
     }
-    else if($isGameStarted === "stop"){
-        clearInterval(interval)
-    }
-    else if ($isGameStarted === "reset"){
-        $time.textContent = '0.0'
-        clearInterval(interval)
-    }
-    if (time <= 0){
-        $time.textContent = '0.0'
-        clearInterval(interval)
-        $startButton.removeAttribute('disabled',true)
+    switch (true) {
+        case time <= 0:  
+            $time.textContent = '0.0'
+            clearInterval(interval)
+            $startButton.removeAttribute('disabled',true)
     }
     }, 100)
 }
